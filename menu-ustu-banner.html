@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Totbagss Diamond Glow Banner</title>
+  <style>
+    :root {
+      --banner-height: 56px;
+      --banner-offset: 10px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Montserrat", "Segoe UI", Arial, sans-serif;
+      background: #f5f6f8;
+      color: #1f2937;
+      /* Banner menüyü kapatmasın diye tüm sayfayı aşağı iter */
+      padding-top: calc(var(--banner-height) + (var(--banner-offset) * 2));
+    }
+
+    /* MENÜ ÜSTÜ BANNER - DAHA DAR GENİŞLİK */
+    #totbags-diamond {
+      position: fixed;
+      top: var(--banner-offset);
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(92vw, 980px);
+      height: var(--banner-height);
+      border-radius: 14px;
+      z-index: 999999;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0a0005 0%, #2d0a1f 30%, #4a0d32 50%, #2d0a1f 70%, #0a0005 100%);
+      background-size: 300% 300%;
+      animation: luxuryWave 8s ease infinite;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 215, 0, 0.28);
+    }
+
+    @keyframes luxuryWave {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    #totbags-diamond::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -90%;
+      width: 70%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.07), rgba(255, 255, 255, 0.17), rgba(255, 215, 0, 0.07), transparent);
+      animation: diamondSweep 4.5s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes diamondSweep {
+      0% { left: -90%; }
+      100% { left: 120%; }
+    }
+
+    .gold-border-line {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.35), rgba(255, 215, 0, 0.9), rgba(255, 215, 0, 0.35), transparent);
+      box-shadow: 0 0 7px rgba(255, 215, 0, 0.55);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .gold-border-line.top { top: 0; }
+    .gold-border-line.bottom { bottom: 0; }
+
+    .diamond-wrap {
+      width: 100%;
+      height: 100%;
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .d-msg {
+      color: #ffffff;
+      letter-spacing: 2px;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      gap: 14px;
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    .d-msg.active {
+      display: flex;
+      animation: glowFade 500ms ease;
+    }
+
+    @keyframes glowFade {
+      from { opacity: 0; transform: scale(0.98); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .d-msg b {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: linear-gradient(90deg, #ffd700 0%, #fff8dc 28%, #ffd700 55%, #fff8dc 82%, #ffd700 100%);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: goldShimmer 2.2s linear infinite;
+      filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.5));
+    }
+
+    @keyframes goldShimmer {
+      0% { background-position: 200% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .diamond-icon {
+      font-size: 15px;
+      color: #ffd700;
+      text-shadow: 0 0 7px #ffd700;
+    }
+
+    .banner-close {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 20;
+    }
+
+    .banner-close:hover { background: rgba(255, 255, 255, 0.22); }
+
+    .mock-menu {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: 1px solid #d7dce5;
+      background: #fff;
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --banner-height: 50px;
+        --banner-offset: 8px;
+      }
+
+      #totbags-diamond { width: min(96vw, 700px); }
+      .diamond-wrap { padding: 0 38px 0 34px; }
+      .d-msg { font-size: 10px; gap: 8px; letter-spacing: 1px; }
+      .d-msg b { font-size: 14px; letter-spacing: 1px; }
+      .diamond-icon { font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="totbags-diamond" role="region" aria-label="Totbagss kampanya bannerı">
+    <div class="gold-border-line top"></div>
+    <div class="gold-border-line bottom"></div>
+
+    <div class="diamond-wrap">
+      <div class="d-msg active" id="d-1"><span class="diamond-icon">💎</span> Büyük Açılış Fırsatı <b>%50 İNDİRİM</b> <span class="diamond-icon">💎</span></div>
+      <div class="d-msg" id="d-2"><span class="diamond-icon">✨</span> 1000₺ Üzeri Siparişlerde <b>KARGO BEDAVA</b> <span class="diamond-icon">✨</span></div>
+      <div class="d-msg" id="d-3"><span class="diamond-icon">👑</span> Toptan Satış İçin <b>BİZE ULAŞIN</b> <span class="diamond-icon">👑</span></div>
+    </div>
+
+    <button class="banner-close" id="closeBanner" aria-label="Bannerı kapat">×</button>
+  </div>
+
+  <div class="mock-menu">Menü alanı örneği: Banner sabit kalır, içerik ise body padding sayesinde bannerın altında başlar.</div>
+
+  <script>
+    (function () {
+      const messages = document.querySelectorAll('.d-msg');
+      const banner = document.getElementById('totbags-diamond');
+      const closeButton = document.getElementById('closeBanner');
+      let index = 0;
+
+      setInterval(() => {
+        messages[index].classList.remove('active');
+        index = (index + 1) % messages.length;
+        messages[index].classList.add('active');
+      }, 4500);
+
+      closeButton?.addEventListener('click', () => {
+        banner.style.display = 'none';
+        document.body.style.paddingTop = '0';
+      });
+    })();
+  </script>
+</body>
+</html>
